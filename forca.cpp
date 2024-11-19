@@ -2,9 +2,7 @@
 #include<string>
 #include<vector>
 #include<algorithm>
-
-
-
+#include<map>
 
 using namespace std;
 
@@ -19,6 +17,9 @@ bool acertou=false;
 
 char letra;
 vector<char> tentativas;
+vector<string> palavras = { "cachorro", "gato", "macaco", "aranha", "cobra", "abelha", "lagarto","abajur", "cabeceira", "batedeira","liquidificador","televisao","cadeira" };
+
+
 
 // criar um dicionario para o jogo escolher sozinho a palavra secreta
 
@@ -30,7 +31,14 @@ void verifica_letra(){
                 tentativas.push_back(letra);
             }
 
-        }
+            cout<<"\nAs letras tentadas foram: ";
+
+            for(int n=0;n<tentativas.size();n++){
+                cout<<tentativas[n]<<" ";
+
+            }
+
+}
 
 
 void verifica_palavra(){
@@ -45,9 +53,9 @@ void verifica_palavra(){
     }
     
     if(acertou) {
-        cout << "Correto!" << endl;
+        cout << "\nCorreto!" << endl;
     } else {
-        cout << "Errado!" << endl;
+        cout << "\nErrado!" << endl;
         chances++;
     }
 
@@ -74,8 +82,13 @@ void verifica_palavra(){
 
 int main(){
 
-    cout<<"Digite a palavra secreta: "<<endl;
-    cin>>palavraSecreta;
+    srand(time(0));
+
+    int index = rand()%palavras.size();
+
+
+    //cout<<"Digite a palavra secreta: "<<endl;
+    palavraSecreta = palavras[index];
 
     mascara = string(palavraSecreta.length(), '_');
 
